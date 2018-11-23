@@ -6,15 +6,16 @@ var express     = require("express"),
     Comment     = require("./models/comment"),
     seedDB      = require("./seeds");
 
-seedDB();
+
 
 //initialise mongoose
 mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true });
 mongoose.set("useFindAndModify", false);
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 
+seedDB();
 
 app.get("/", function(req, res){
     res.render("landing");
