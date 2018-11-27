@@ -9,6 +9,7 @@ const express = require("express"),
     User = require("./models/user"),
     seedDB = require("./seeds");
 
+// Require Route Files
 
 const indexRoutes = require("./routes/index"),
     campgroundRoutes = require("./routes/campgrounds"),
@@ -22,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 
-seedDB();
+//seedDB(); // seed the database
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
@@ -30,6 +31,7 @@ app.use(require("express-session")({
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));

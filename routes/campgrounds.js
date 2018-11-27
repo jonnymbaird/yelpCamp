@@ -5,6 +5,7 @@ const express = require("express"),
 // ==============================================
 // Campgrounds ROUTES
 // ==============================================
+
 // INDEX - show all campgrounds
 router.get("/", function(req, res) {
     //Get all campgrounds from DB
@@ -19,17 +20,21 @@ router.get("/", function(req, res) {
 });
 
 // NEW - show form to create new campgrounds
-router.get("/new", function(req, res) {
+router.get("/new", isLoggedIn, function(req, res) {
     res.render("campgrounds/new");
 });
 
 // CREATE - add new campground to DB
-router.post("/", function(req, res) {
+router.post("/", isLoggedIn, function(req, res) {
     //get data from form and add to campgrounds array
-    let name = req.body.name;
-    let image = req.body.image;
-    let description = req.body.description;
-    let newCampground = { name: name, image: image, description: description };
+    const name = req.body.name;
+    const image = req.body.image;
+    const description = req.body.description;
+    const author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    const newCampground = { name: name, image: image, description: description, author: author };
     //create new campground and save to DB
     Campground.create(newCampground, function(err, newlyCreated) {
         if (err) {
@@ -56,5 +61,12 @@ router.get("/:id", function(req, res) {
     });
 
 });
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect("/login");
+}
 
 module.exports = router;
