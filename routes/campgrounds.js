@@ -43,6 +43,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
             console.log(err);
         }
         else {
+            req.flash("success", "Campground Created");
             res.redirect("/campgrounds");
         }
     })
