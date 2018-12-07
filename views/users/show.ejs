@@ -2,16 +2,19 @@
 
 <div class="row">
     <div class="col-md-4">
-        <div class="thumbnail">
-                <h1 class="text-capitalize text-center"><%= user.firstName + " " + user.lastName %></h1>
-                <img src="<%= user.avatar %>" alt="User Profile Image">
-                <div class="caption">
+        <div class="card">
+                <h1 class="card-title text-capitalize text-center"><%= user.firstName + " " + user.lastName %></h1>
+                <img class="card-img-top" src="<%= user.avatar %>" alt="User Profile Image">
+                <div class="card-footer">
                     <a href="mailto:<%= user.email %>"><%= user.email %></a>
                 </div>
-        </div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet ex felis. Aliquam lectus elit, viverra sed urna eget, efficitur pretium sem. Sed quis accumsan ipsum. Fusce ut suscipit orci. Donec eget nibh mattis felis viverra malesuada at vitae leo. Sed ac vehicula purus. In ultricies convallis tellus ut fermentum. Morbi eget leo interdum, accumsan leo non, sodales elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet ex felis. Aliquam lectus elit, viverra sed urna eget, efficitur pretium sem. Sed quis accumsan ipsum. Fusce ut suscipit orci. Donec eget nibh mattis felis viverra malesuada at vitae leo. Sed ac vehicula purus. In ultricies convallis tellus ut fermentum. Morbi eget leo interdum, accumsan leo non, sodales elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
 
-        Fusce sit amet magna at nisl tempor hendrerit in ac est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla euismod vehicula. Sed et arcu a nulla laoreet auctor vel sed leo. Quisque pellentesque non nibh a dictum. Donec rutrum nisi in nunc ornare, ut fermentum lorem lacinia. Aenean pharetra tempus ante at semper. Mauris a rutrum tellus, vel ultrices ante. Vestibulum eget lobortis diam. Aenean vitae lacinia tortor, eu hendrerit augue. Nunc ut justo mattis, fringilla risus id, rutrum mi. Aliquam vitae sodales urna. Ut maximus id lorem at rhoncus.
+                    Fusce sit amet magna at nisl tempor hendrerit in ac est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras fringilla euismod vehicula. Sed et arcu a nulla laoreet auctor vel sed leo. Quisque pellentesque non nibh a dictum. Donec rutrum nisi in nunc ornare, ut fermentum lorem lacinia. Aenean pharetra tempus ante at semper. Mauris a rutrum tellus, vel ultrices ante. Vestibulum eget lobortis diam. Aenean vitae lacinia tortor, eu hendrerit augue. Nunc ut justo mattis, fringilla risus id, rutrum mi. Aliquam vitae sodales urna. Ut maximus id lorem at rhoncus.
+                </div>
+        </div>
+        
     </div>
     <div class="col-md-8">
         <h3><%= user.username %>'s Campgrounds</h3>

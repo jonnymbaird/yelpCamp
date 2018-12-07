@@ -73,7 +73,7 @@ router.get("/users/:id", function(req, res) {
                 req.flash("error", err.message);
                 res.redirect("back");
             }
-            res.render("users/show", {user: foundUser, campgrounds: campgrounds});
+            res.render("users/show", {page: 'profile', user: foundUser, campgrounds: campgrounds});
         });
     });
 });

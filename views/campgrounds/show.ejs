@@ -11,21 +11,21 @@
         <div id="map"></div>
     </div>
     <div class="col-md-9">
-        <div class="thumbnail">
-            <img class="img-responsive" src="<%= campground.image %>">
-            <div class="caption">
-                <h4 class="pull-right">$<%= campground.price %>/night</h4>
-                <h4><a href=""><%= campground.name %></a></h4>
-                <p><%= campground.description %></p>
-                <p>
-                    <em>Submitted by: <a href="/users/<%= campground.author.id %>"><%= campground.author.username %></a>, <%= moment(campground.createdAt).fromNow() %></em>
-                </p>
+        <div class="card">
+            <img class="car-img-top" src="<%= campground.image %>" alt="Campground Image">
+            <div class="card-body">
+                <h4 class="float-right">$<%= campground.price %>/night</h4>
+                <h4 class="card-title"><a href=""><%= campground.name %></a></h4>
+                <p class="card-text"><%= campground.description %></p>
                 <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                     <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
                     <form class="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-xs btn-danger">Delete</button>
                     </form>
                 <% } %>
+                <div class="blockquote-footer">
+                    <p>Submitted by: <a href="/users/<%= campground.author.id %>"><%= campground.author.username %></a>, <%= moment(campground.createdAt).fromNow() %></p>
+                </div>
             </div>
         </div>
         <div class="well">
@@ -36,19 +36,25 @@
             <% campground.comments.forEach(function(comment){ %>
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="/users/<%= comment.author.id %>"><%= comment.author.username %></a>
-                        <span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
-                        <p><%= comment.text %></p>
-                        <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
-                            <a class = "btn btn-xs btn-warning" 
-                                href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">
-                                Edit
-                            </a>
-                            <form class="delete-form" 
-                                action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-xs btn-danger">Delete</button>
-                            </form>
-                        <% } %>
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text"><%= comment.text %></p>
+                                <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                                    <a class="btn btn-xs btn-warning" 
+                                        href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">
+                                        Edit
+                                    </a>
+                                    <form class="delete-form" 
+                                        action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-xs btn-danger">Delete</button>
+                                    </form>
+                                <% } %>
+                                <div class="blockquote-footer">
+                                    <a href="/users/<%= comment.author.id %>"><%= comment.author.username %></a>
+                                    <span class="float-right"><%= moment(comment.createdAt).fromNow() %></span>
+                                </div>  
+                            </div>
+                        </div>
                     </div>
                 </div>
             <% }) %>
