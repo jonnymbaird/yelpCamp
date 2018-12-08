@@ -1,3 +1,4 @@
+"use strict";
 require("dotenv").config();
 
 const express = require("express"),
@@ -21,10 +22,11 @@ const indexRoutes = require("./routes/index"),
 
 
 //initialise mongoose
-mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true });
+//mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true }); // Local
+mongoose.connect("mongodb://jbaird:fm3BLAnt@ds127604.mlab.com:27604/yelpcamp_jbaird", { useNewUrlParser: true }); // mdlab
 mongoose.set("useFindAndModify", false);
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true, }));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
@@ -37,7 +39,7 @@ app.locals.moment = require("moment")
 app.use(require("express-session")({
     secret: "this is a secret for passport",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
 }));
 
 app.use(passport.initialize());
@@ -59,7 +61,12 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 
 
 
-
+// cloud listener
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("YelpCamp Server has started");
 });
+
+// Local listener
+// app.listen(3000, function() {
+//     console.log("YelpCamp Server has started");
+// });
