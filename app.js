@@ -23,7 +23,9 @@ const indexRoutes = require("./routes/index"),
 
 //initialise mongoose
 //mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true }); // Local
-mongoose.connect("mongodb://jbaird:fm3BLAnt@ds127604.mlab.com:27604/yelpcamp_jbaird", { useNewUrlParser: true }); // mdlab
+//mongoose.connect("mongodb://jbaird:fm3BLAnt@ds127604.mlab.com:27604/yelpcamp_jbaird", { useNewUrlParser: true }); // mdlab
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true }); 
+
 mongoose.set("useFindAndModify", false);
 
 app.use(bodyParser.urlencoded({ extended: true, }));
