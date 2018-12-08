@@ -22,9 +22,10 @@ const indexRoutes = require("./routes/index"),
 
 
 //initialise mongoose
-//mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true }); // Local
+//mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true }); // Local
 //mongoose.connect("mongodb://jbaird:fm3BLAnt@ds127604.mlab.com:27604/yelpcamp_jbaird", { useNewUrlParser: true }); // mdlab
-mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true }); 
+const url = process.env.DATABASEURL || "mongodb://localhost:27017/yelp_camp";
+mongoose.connect(url, { useNewUrlParser: true }); 
 
 mongoose.set("useFindAndModify", false);
 
@@ -64,11 +65,11 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 
 
 // cloud listener
-app.listen(process.env.PORT, process.env.IP, function() {
-    console.log("YelpCamp Server has started");
-});
-
-// Local listener
-// app.listen(3000, function() {
+// app.listen(process.env.PORT, process.env.IP, function() {
 //     console.log("YelpCamp Server has started");
 // });
+
+// Local listener
+app.listen(3000, function() {
+    console.log("YelpCamp Server has started");
+});
